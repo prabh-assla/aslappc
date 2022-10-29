@@ -1,3 +1,3 @@
-# compiler for my own language aslappc
+# compiler for JavaScript
 
-> this compiler is made using c++ language for aslappc!
+> this compiler is made using c++ language for Js!
