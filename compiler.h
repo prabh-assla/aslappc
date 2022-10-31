@@ -2,6 +2,52 @@
 #include <fstream>
 
     #pragma once
+        enum tokenTypes{
+            TOKEN_TYPE_IDENTIFIER,
+            TOKEN_TYPE_KEYWORD,
+            TOKEN_TYPE_SYMBOL,
+            TOKEN_TYPE_NUMBER,
+            TOKEN_TYPE_STRING,
+            TOKEN_TYPE_COMMENT,
+            TOKEN_TYPE_NEWLINE
+        };
+
+        class TOKEN{
+            private :
+                int type;
+                int flags;
+
+            public :
+                TOKEN() : type{NULL}, flags{NULL} {}
+
+                TOKEN(int type, int flags) : type{type}, flags{flags} {}
+
+                TOKEN(const TOKEN& token){
+                    this->type = token.return_type();
+                    this->flags = token.return_flags();
+                }
+
+                int inline return_type() const{
+                    return type;
+                }
+
+                int inline return_flags() const{
+                    return flags;
+                }
+
+                union primitives{
+                    int Number;
+                    std::string String;
+                    bool Boolean;
+                    void* null;
+                    void* undefined;
+                };
+
+                bool whitespace;
+
+                std::string betweenBrackets;
+        };
+
         class COMPILE_PROCESS{
             private :
                 int flags;
